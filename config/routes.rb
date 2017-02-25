@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/'
           # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
   get 'potepan/index'
   get 'potepan/product_grid_left_sidebar'
   get 'potepan/product_list_left_sidebar'
-  get 'potepan/single_product'
   get 'potepan/cart_page'
   get 'potepan/blog_left_sidebar'
   get 'potepan/blog_right_sidebar'
@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get 'potepan/about_us'
   get 'potepan/tokushoho'
   get 'potepan/privacy_policy'
+
+  resources 'potepan/products', only [:show]
+
 end
 
 # == Route Map

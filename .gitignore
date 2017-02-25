@@ -21,3 +21,6 @@
 .byebug_history
 
 vendor/bundle
+
+# Ingnore product image files
+public/spree/products/*
