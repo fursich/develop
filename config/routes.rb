@@ -20,8 +20,6 @@ Rails.application.routes.draw do
   get 'potepan/tokushoho'
   get 'potepan/privacy_policy'
 
-  resources 'potepan/products', only [:show]
-
 end
 
 # == Route Map
