@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :potepan do
+    get 'products/show'
+  end
+
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -10,7 +14,6 @@ Rails.application.routes.draw do
   get 'potepan/index'
   get 'potepan/product_grid_left_sidebar'
   get 'potepan/product_list_left_sidebar'
-  get 'potepan/single_product'
   get 'potepan/cart_page'
   get 'potepan/blog_left_sidebar'
   get 'potepan/blog_right_sidebar'
@@ -19,6 +22,11 @@ Rails.application.routes.draw do
   get 'potepan/about_us'
   get 'potepan/tokushoho'
   get 'potepan/privacy_policy'
+
+  get 'potepan/single_product'
+  namespace :potepan do
+    resources :products, only: [:show]
+  end
 end
 
 # == Route Map
