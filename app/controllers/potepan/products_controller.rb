@@ -1,4 +1,7 @@
 class Potepan::ProductsController < ApplicationController
+  def index
+    @products = Spree::Product.includes(:taxons).where("spree_taxons.name=?", 'Bags').references(:taxons).includes(:prices)
+  end
 
   def show
     @single_product = Spree::Product.find(params[:id])
