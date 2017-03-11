@@ -10,5 +10,9 @@ class PotepanController < ApplicationController
   end
   def checkout_step_4
   end
+  def single_product
+    @single_product = Spree::Product.first
+    @product_image = @single_product.display_image
+  end
 
 end
