@@ -162,7 +162,7 @@
                     <ul class="nav navbar-nav side-nav">
                       <% @prototype_names.each do |prototype| %>
                         <li>
-                          <%= link_to prototype, potepan_products_path %>
+                          <%= link_to prototype, potepan_products_path(category: prototype) %>
                         </li>
                       <% end %>
                     </ul>
