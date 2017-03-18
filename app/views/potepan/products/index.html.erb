@@ -135,9 +135,9 @@
             <div class="panel-body">
               <div class="collapse navbar-collapse navbar-ex1-collapse navbar-side-collapse">
                 <ul class="nav navbar-nav side-nav">
-                  <% @prototype_names.each do |prototype| %>
+                  <% @product_categories.each do |category| %>
                     <li>
-                      <%= link_to prototype, potepan_products_path(category: prototype) %>
+                      <%= link_to category, potepan_products_path(category: category) %>
                     </li>
                   <% end %>
                 </ul>
