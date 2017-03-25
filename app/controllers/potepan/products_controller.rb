@@ -1,12 +1,13 @@
 class Potepan::ProductsController < ApplicationController
   def index
     if params[:category]
-      @products = Spree::Product.includes(:taxons).where("upper(spree_taxons.name) like ?", "%#{params[:category]}%").references(:taxons).includes(:prices)
+      @products = Spree::Product.includes(:taxons).where("upper(spree_taxons.name) = ?", params[:category]).references(:taxons).includes(:prices)
       # scopeを使ってまとめたい & ActiveRecord::Sanitization::sanitize_sql_likeを使いたいけどやり方がわからない･･
     else
       @products = Spree::Product.all
     end
-    @prototype_names = Spree::Prototype.all.pluck(:name).map(&:upcase)
+    @product_categories = Spree::Taxon.find_by('lower(name)=?', 'categories').descendants.pluck(:name).map(&:upcase)
+
   end
 
   def show
