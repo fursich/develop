@@ -180,8 +180,16 @@
                   <option value="3">3</option>
                 </select>
               </span>
+              <div class="add-to-cart">
+                <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
+                <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
+                  <%= Spree.t(:add_to_cart) %>
+                <% end %>
+              </div>
               <div class="btn-area">
-                <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                <%= link_to Spree::Core::Engine.routes.url_helpers.cart_path do %>
+                  <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
+                <% end %>
               </div>
             </div>
           </div>
