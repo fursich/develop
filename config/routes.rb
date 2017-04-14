@@ -22,6 +22,11 @@ Rails.application.routes.draw do
   get 'potepan/single_product'
   namespace :potepan do
     resources :products, only: [:index, :show]
+    resources :orders, only: [:index, :show, :edit, :update] do
+      collection do
+        post 'populate'
+      end
+    end
   end
 
 end

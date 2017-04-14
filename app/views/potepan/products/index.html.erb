@@ -33,10 +33,25 @@
                         </ul>
                       </li>
                       <li class="dropdown">
-                        <a href="cart_page.html" class="dropdown-toggle" data-toggle="dropdown disabled"><i class="fa fa-shopping-cart"></i>¥0</a>
+                        <%= link_to potepan_orders_path, class: "dropdown-toggle", 'data-toggle' => "dropdown disabled" do %>
+                          <i class="fa fa-shopping-cart"></i>¥0</a>
+                        <% end %>
+                        <!-- <a href="cart_page.html" class="dropdown-toggle" data-toggle="dropdown disabled"><i class="fa fa-shopping-cart"></i>¥0</a> -->
                         <ul class="dropdown-menu dropdown-menu-right">
                           <li>ショッピングカート</li>
                           <li>
+                            ポップアップ: 後ほど修正
+                            <!-- <a href="single_product.html">
+                              <div class="media">
+                                <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
+                                <div class="media-body">
+                                  <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
+                                </div>
+                              </div>
+                            </a> -->
+                          </li>
+                           後ほど修正
+                          <!-- <li>
                             <a href="single_product.html">
                               <div class="media">
                                 <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
@@ -45,21 +60,11 @@
                                 </div>
                               </div>
                             </a>
-                          </li>
-                          <li>
-                            <a href="single_product.html">
-                              <div class="media">
-                                <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
-                                <div class="media-body">
-                                  <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
-                                </div>
-                              </div>
-                            </a>
-                          </li>
+                          </li> -->
                           <li>
                             <div class="btn-group" role="group" aria-label="...">
-                              <button type="button" class="btn btn-default" onclick="location.href='cart_page.html';">カートを見る</button>
-                              <button type="button" class="btn btn-default" onclick="location.href='checkout_step_1.html';">購入する</button>
+                              <button type="button" class="btn btn-default" onclick="location.href='/potepan/orders';">カートを見る</button> <!-- リンクはベタガキ中 -->
+                              <button type="button" class="btn btn-default" onclick="location.href='checkout_step_1.html';">購入する</button> <!-- 後ほどリンク修正 -->
                             </div>
                           </li>
                         </ul>
@@ -93,7 +98,7 @@
               </li>
               <li class="dropdown">
                 <a href="about_us" class="dropdown-toggle">About US</a>
-              </li>
+              </li>f
               <li class="dropdown">
                 <a href="blog_left_sidebar" class="dropdown-toggle">blog</a>
               </li>
@@ -207,7 +212,9 @@
                     <%= image_tag(@product_images[i]) %>
                     <div class="productMasking">
                       <ul class="list-inline btn-group" role="group">
-                        <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
+                        <li><a data-toggle="modal" data-target="#quick-view-1" class="btn btn-default productView">VIEW</a></li>
+                        <!-- <li><a data-toggle="modal" data-target=<%= "#quick-view-#{i}" %> class="btn btn-default productView">VIEW</a></li> -->
+                        <!-- 本当はプロダクトごとにmodalの写真を出し分けたいが､data-tagetにidをベタガキしないと反応しなくなるので(js? bootstrapの仕様?)後で修正 -->
                         </ul>
                     </div>
                   </div>
@@ -383,51 +390,8 @@
     </div>
   </div>
 </div>
+<%= render partial: 'product_view', locals: {product_order: 1} %>
 
-<!-- PORDUCT QUICK VIEW MODAL -->
-<div class="modal fade quick-view" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <div class="media">
-          <div class="media-left">
-            <%= image_tag("img/products/quick-view/quick-view-01.jpg", :class => "media-object", :alt => "Image") %>
-          </div>
-          <div class="media-body">
-            <h2>Old Skool Navy</h2>
-            <h3>149円</h3>
-            <p>Classic sneaker from Vans. Cotton canvas and suede upper. Textile lining with heel stabilizer and ankle support. Contrasting laces. Sits on a classic waffle rubber sole.</p>
-            <span class="quick-drop">
-              <select name="guiest_id3" id="guiest_id3" class="select-drop">
-                <option value="0">Size</option>
-                <option value="1">Size 1</option>
-                <option value="2">Size 2</option>
-                <option value="3">Size 3</option>
-              </select>
-            </span>
-            <span class="quick-drop resizeWidth">
-              <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <option value="0">Qty</option>
-                <option value="1">Qty 1</option>
-                <option value="2">Qty 2</option>
-                <option value="3">Qty 3</option>
-              </select>
-            </span>
-            <div class="btn-area">
-              <a href="#" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<%= javascript_include_tag "plugins/bootstrap/js/bootstrap.min" %>
-<%= javascript_include_tag "plugins/rs-plugin/js/jquery.themepunch.tools.min" %>
-<%= javascript_include_tag "plugins/rs-plugin/js/jquery.themepunch.revolution.min" %>
-<%= javascript_include_tag "plugins/owl-carousel/owl.carousel" %>
-<%= javascript_include_tag "plugins/selectbox/jquery.selectbox-0.1.3.min" %>
-<%= javascript_include_tag "plugins/countdown/jquery.syotimer" %>
-<%= javascript_include_tag "js/custom" %>
+<!-- <% @products.each.with_index do |product, i| %>
+  <%= render partial: 'product_view', locals: {product_order: i} %>
+<% end %> -->
