@@ -1,2 +1,0 @@
-module Potepan::OrdersHelper
-end
