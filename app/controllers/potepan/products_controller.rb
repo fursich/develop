@@ -28,5 +28,7 @@ class Potepan::ProductsController < ApplicationController
     @single_product = Spree::Product.find(params[:id])
     @variants = @single_product.variants
     @product_image = @single_product.display_image
+binding.pry
+    @related_products = Spree::Product.with_taxons_name( product.taxons ).includes(:prices)
   end
 end

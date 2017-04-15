@@ -2596,14 +2596,18 @@ body.bodyColor.container {
 /*=== 7.1 PRODUCTS COMMON ===*/
 @media (min-width: 768px) {
   .productsContent .productBox .productImage {
-    width: 100%;
-    height: auto;
+    img {
+      width: auto;
+      height: 140px;
+    }
   }
 }
 @media (min-width: 992px) {
   .productsContent .productBox .productImage {
-    width: 100%;
-    height: auto;
+    img {
+      width: auto;
+      height: 180px;
+    }
   }
 }
 

@@ -26,7 +26,28 @@
   </head>
 
   <body>
-    <%= yield %>
+
+    <div class="main-wrapper">
+      <!-- HEADER -->
+      <div class="header clearfix">
+        <!-- TOPBAR -->
+        <%= render partial: 'potepan/partial/topbar' %>
+        <!-- NAVBAR -->
+        <%= render partial: 'potepan/partial/navbar' %>
+      </div>
+
+      <%= yield %>
+      <!-- LIGHT SECTION -->
+      <%= render partial: 'potepan/partial/partners' %>
+
+      <!-- FOOTER -->
+      <!-- COPY RIGHT -->
+      <%= render partial: 'potepan/partial/footer' %>
+    </div>
+    
+    <!-- LOGIN MODAL -->
+    <!-- SIGN UP MODAL -->
+    <%= render partial: 'potepan/partial/auth_modals' %>
   </body>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 

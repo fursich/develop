@@ -1,0 +1,20 @@
+<section class="lightSection clearfix pageHeader">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="page-title">
+          <h2><%= yield(:title) %></h2>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <ol class="breadcrumb pull-right">
+          <li><%= link_to 'Home', potepan_index_path %></li>
+          <% if yield(:group).present? && yield(:group_path).present? %>
+            <li class="active"><%= link_to yield(:group), yield(:group_path) %></li>
+          <% end %>
+          <li class="active"><%= yield(:title) %></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>

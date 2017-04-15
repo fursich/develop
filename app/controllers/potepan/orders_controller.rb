@@ -3,6 +3,7 @@ class Potepan::OrdersController < ApplicationController
   include Spree::Core::ControllerHelpers::Order
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Store
+  include Spree::Core::ControllerHelpers::StrongParameters
 
   def show
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
@@ -13,22 +14,17 @@ class Potepan::OrdersController < ApplicationController
   end
 
   def update
-    binding.pry
     @order = current_order(create_order_if_necessary: false)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
 
     if @order.contents.update_cart(order_params)
-      respond_with(@order) do |format|
-        format.html do
-          if params.key?(:checkout)
-            @order.next if @order.cart?
-            redirect_to checkout_state_path(@order.checkout_steps.first)
-          else
-            redirect_to cart_path
-          end
-        end
+      if params.key?(:checkout)
+        @order.next if @order.cart?
+        redirect_to checkout_state_path(@order.checkout_steps.first)
+      else
+        redirect_to action: :show
       end
     else
-      respond_with(@order)
+      redirect_to action: :show   # カートのupdateに失敗した場合はリロードとする
     end
   end
 
@@ -58,4 +54,16 @@ class Potepan::OrdersController < ApplicationController
       redirect_to potepan_order_path(order.id)
     end
   end
+
+  private
+
+
+  def order_params
+    if params[:order]
+      params[:order].permit(*permitted_order_attributes)
+    else
+      {}
+    end
+  end
+
 end
