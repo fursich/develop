@@ -1,8 +1,9 @@
 
 <% provide(:title, 'Shop') %>
+<% provide(:partners, true) %>
 
 <!-- LIGHT SECTION -->
-<%= render partial: 'potepan/partial/light_section' %>
+<%= render partial: 'potepan/common/light_section' %>
 
   <!-- MAIN CONTENT SECTION -->
   <section class="mainContent clearfix productsContent">
@@ -107,5 +108,5 @@
   </section>
 
 <% @products.each.with_index do |product, i| %>
-  <%= render partial: 'potepan/partial/product_view_modal', locals: {product: product, product_image: @product_images[i], product_order: i} %>
+  <%= render partial: 'potepan/common/product_view_modal', locals: {product: product, product_image: @product_images[i], product_order: i} %>
 <% end %>

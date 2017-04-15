@@ -14,15 +14,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class=""><a href="/potepan/index.html">Home</a></li>
-          <li class="active dropdown megaDropMenu">
-            <a href="product_grid_left_sidebar" class="dropdown-toggle">Shop</b></a>
+          <li class=""><%= link_to 'Home', potepan_index_path %></li>
+          <li class="dropdown">
+            <%= link_to 'Shop', potepan_products_path, class: "dropdown-toggle" %>
           </li>
           <li class="dropdown">
-            <a href="about_us" class="dropdown-toggle">About US</a>
+            <%= link_to 'About US', potepan_about_us_path, class: "dropdown-toggle" %>
           </li>
           <li class="dropdown">
-            <a href="blog_left_sidebar" class="dropdown-toggle">blog</a>
+            <%= link_to 'blog', potepan_blogs_path, class: "dropdown-toggle" %>
           </li>
         </ul>
       </div><!-- /.navbar-collapse -->

@@ -31,23 +31,25 @@
       <!-- HEADER -->
       <div class="header clearfix">
         <!-- TOPBAR -->
-        <%= render partial: 'potepan/partial/topbar' %>
+        <%= render partial: 'potepan/common/topbar' %>
         <!-- NAVBAR -->
-        <%= render partial: 'potepan/partial/navbar' %>
+        <%= render partial: 'potepan/common/navbar' %>
       </div>
 
       <%= yield %>
       <!-- LIGHT SECTION -->
-      <%= render partial: 'potepan/partial/partners' %>
+      <% if yield(:partners).present? %>
+        <%= render partial: 'potepan/common/partners' %>
+      <% end %>
 
       <!-- FOOTER -->
       <!-- COPY RIGHT -->
-      <%= render partial: 'potepan/partial/footer' %>
+      <%= render partial: 'potepan/common/footer' %>
     </div>
-    
+
     <!-- LOGIN MODAL -->
     <!-- SIGN UP MODAL -->
-    <%= render partial: 'potepan/partial/auth_modals' %>
+    <%= render partial: 'potepan/common/auth_modals' %>
   </body>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
