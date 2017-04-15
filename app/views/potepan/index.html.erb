@@ -1,4 +1,5 @@
 <% provide(:title, 'TOP') %>
+<% provide(:partners, true) %>
 
   <!-- BANNER -->
   <div class="bannercontainer">
@@ -184,20 +185,20 @@
           </div>
         </div>
         <div class="col-sm-4 col-xs-12">
-          <div class="thumbnail" onclick="location.href='potepan/products/?category=SHIRTS';">
+          <div class="thumbnail">
             <div class="imageWrapper">
               <%= image_tag("home/featured-collection/featured-collection-01.jpg", :alt => "feature-collection-image") %>
               <div class="masking">
-                <%= link_to 'View Shoes', potepan_products_path(category: 'SHIRTS'), class: 'btn viewBtn'  %>
+                <%= link_to 'View SHIRTS', potepan_products_path(category: 'SHIRTS'), class: 'btn viewBtn'  %>
               </div>
             </div>
             <div class="caption">
-              <h4>Shoes</h4>
+              <h4><%= link_to 'SHIRTS', potepan_products_path(category: 'SHIRTS') %></h4>
             </div>
           </div>
         </div>
         <div class="col-sm-4 col-xs-12">
-          <div class="thumbnail" onclick="location.href='potepan/products/?category=BAGS';">
+          <div class="thumbnail">
             <div class="imageWrapper">
               <%= image_tag("home/featured-collection/featured-collection-02.jpg", :alt => "feature-collection-image") %>
               <div class="masking">
@@ -205,20 +206,20 @@
               </div>
             </div>
             <div class="caption">
-              <h4>Bags</h4>
+              <h4><%= link_to 'BAGS', potepan_products_path(category: 'BAGS') %></h4>
             </div>
           </div>
         </div>
         <div class="col-sm-4 col-xs-12">
-          <div class="thumbnail" onclick="location.href='potepan/products/?category=MUGS';">
+          <div class="thumbnail">
             <div class="imageWrapper">
               <%= image_tag("home/featured-collection/featured-collection-03.jpg", :alt => "feature-collection-image") %>
               <div class="masking">
-                <%= link_to 'View Glasses', potepan_products_path(category: 'MUGS'), class: 'btn viewBtn'  %>
+                <%= link_to 'View Mugs', potepan_products_path(category: 'MUGS'), class: 'btn viewBtn'  %>
               </div>
             </div>
             <div class="caption">
-              <h4>Glasses</h4>
+              <h4><%= link_to 'MUGS', potepan_products_path(category: 'MUGS') %></h4>
             </div>
           </div>
         </div>
@@ -241,9 +242,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>1990円</h3>
               </div>
             </div>
@@ -257,9 +256,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>1490円</h3>
               </div>
             </div>
@@ -273,9 +270,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>790円</h3>
               </div>
             </div>
@@ -289,9 +284,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>1090円</h3>
               </div>
             </div>
@@ -305,9 +298,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>1990円</h3>
               </div>
             </div>
@@ -321,9 +312,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                <h3>1490円</h3>
               </div>
             </div>
@@ -337,9 +326,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>790円</h3>
               </div>
             </div>
@@ -353,9 +340,7 @@
                 </div>
               </div>
               <div class="productCaption">
-                <a href="single_product.html">
-                  <h5>商品タイトル</h5>
-                </a>
+                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
                 <h3>1090円</h3>
               </div>
             </div>
@@ -370,9 +355,9 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="thumbnail">
-            <h5><%= link_to '記事タイトル', potepan_blog_single_left_sidebar_path %></h5>
+            <h5><%= link_to '記事タイトル', potepan_blog_path(1) %></h5>
             <span class="meta">2016/9/16</span>
-            <%= link_to potepan_blog_single_left_sidebar_path  do %>
+            <%= link_to potepan_blog_path(1)  do %>
               <%= image_tag("home/articles/articles-01.jpg", :alt => "article-image") %>
             <% end  %>
             <div class="caption">
@@ -382,9 +367,9 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="thumbnail">
-            <h5><%= link_to '記事タイトル', potepan_blog_single_left_sidebar_path %></h5>
+            <h5><%= link_to '記事タイトル', potepan_blog_path(1) %></h5>
             <span class="meta">2016/9/16</span>
-            <%= link_to potepan_blog_single_left_sidebar_path  do %>
+            <%= link_to potepan_blog_path(1)  do %>
               <%= image_tag("home/articles/articles-02.jpg", :alt => "article-image") %>
             <% end  %>
             <div class="caption">
@@ -394,9 +379,9 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="thumbnail">
-            <h5><%= link_to '記事タイトル', potepan_blog_single_left_sidebar_path %></h5>
+            <h5><%= link_to '記事タイトル', potepan_blog_path(1) %></h5>
             <span class="meta">2016/9/16</span>
-            <%= link_to potepan_blog_single_left_sidebar_path  do %>
+            <%= link_to potepan_blog_path(1)  do %>
               <%= image_tag("home/articles/articles-03.jpg", :alt => "article-image") %>
             <% end  %>
             <div class="caption">
@@ -406,9 +391,9 @@
         </div>
         <div class="col-sm-3 col-xs-12">
           <div class="thumbnail">
-            <h5><%= link_to '記事タイトル', potepan_blog_single_left_sidebar_path %></h5>
+            <h5><%= link_to '記事タイトル', potepan_blog_path(1) %></h5>
             <span class="meta">2016/9/16</span>
-            <%= link_to potepan_blog_single_left_sidebar_path  do %>
+            <%= link_to potepan_blog_path(1)  do %>
               <%= image_tag("home/articles/articles-04.jpg", :alt => "article-image") %>
             <% end  %>
             <div class="caption">
@@ -451,8 +436,8 @@
               </select>
             </span>
             <div class="btn-area">
-              <%= link_to potepan_cart_page_path, class: 'btn btn-primary btn-block' do %>
-                カートへ入れる <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: nil), method: :post do %>
+                <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
               <% end %>
             </div>
           </div>

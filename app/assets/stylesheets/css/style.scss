@@ -1592,6 +1592,9 @@ body.bodyColor.container {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  a {
+    color: #252525;    
+  }
 }
 .whiteSection .featuredCollection .thumbnail:hover .caption h4, .mainContent .featuredCollection .thumbnail:hover .caption h4 {
   color: #47bac1;
@@ -2598,7 +2601,7 @@ body.bodyColor.container {
   .productsContent .productBox .productImage {
     img {
       width: auto;
-      height: 140px;
+      height: 130px;
     }
   }
 }
@@ -2606,7 +2609,7 @@ body.bodyColor.container {
   .productsContent .productBox .productImage {
     img {
       width: auto;
-      height: 180px;
+      height: 150px;
     }
   }
 }

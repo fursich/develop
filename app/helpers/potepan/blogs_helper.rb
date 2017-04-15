@@ -1,0 +1,2 @@
+module Potepan::BlogsHelper
+end

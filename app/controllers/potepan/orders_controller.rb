@@ -57,7 +57,6 @@ class Potepan::OrdersController < ApplicationController
 
   private
 
-
   def order_params
     if params[:order]
       params[:order].permit(*permitted_order_attributes)

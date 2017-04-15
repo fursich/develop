@@ -2,116 +2,120 @@
 <% provide(:title, 'Product') %>
 <% provide(:group, 'Shop') %>
 <% provide(:group_path, potepan_products_path) %>
+<% provide(:partners, true) %>
 
-  <!-- LIGHT SECTION -->
-  <%= render partial: 'potepan/partial/light_section' %>
+<!-- LIGHT SECTION -->
+<%= render partial: 'potepan/common/light_section' %>
 
-  <!-- MAIN CONTENT SECTION -->
-  <section class="mainContent clearfix">
-    <div class="container">
-      <div class="row singleProduct">
-        <div class="col-xs-12">
-          <div class="media">
-            <div class="media-left productSlider">
-              <div id="carousel" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="item active" data-thumb="0">
-                    <%= image_tag(@product_image.attachment.url(:large)) %>
-                  </div>
+<!-- MAIN CONTENT SECTION -->
+<section class="mainContent clearfix">
+  <div class="container">
+    <div class="row singleProduct">
+      <div class="col-xs-12">
+        <div class="media">
+          <div class="media-left productSlider">
+            <div id="carousel" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div class="item active" data-thumb="0">
+                  <%= image_tag(@product_image) %>
                 </div>
               </div>
-
             </div>
-            <div class="media-body">
-              <ul class="list-inline">
-                <li>
-                  <%= link_to potepan_products_path do %>
-                    <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
-                  <% end %>
-                </li>
-              </ul>
-              <h2><%= @single_product.name %></h2>
-              <h3> <%= @single_product.prices.first.money.to_html  %> </h3>
-              <p>Mauris lobortis augue ex, ut faucibus nisi mollis ac. Sed volutpat scelerisque ex ut ullamcorper. Cras at velit quis sapien dapibus laoreet a id odio. Sed sit amet accumsan ante, eu congue metus. Aenean eros tortor, cursus quis feugiat sed, vestibulum vel purus. Etiam aliquam turpis quis blandit finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor placerat lectus, facilisis ornare leo tincidunt vel. Duis rutrum felis felis, eget malesuada massa tincidunt a.</p>
-              <span class="quick-drop">
-                <select name="guiest_id3" id="guiest_id3" class="select-drop">
-                  <option value="0">S</option>
-                  <option value="1">M</option>
-                  <option value="2">L</option>
-                  <option value="3">XL</option>
-                </select>
-              </span>
-              <span class="quick-drop resizeWidth">
-                <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <!--   <option value="0">Qty</option> -->
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </span>
-              <!-- <div class="add-to-cart"> 数量指定
-                <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
-                <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
-                  <%= Spree.t(:add_to_cart) %>
+
+          </div>
+          <div class="media-body">
+            <ul class="list-inline">
+              <li>
+                <%= link_to potepan_products_path do %>
+                  <i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る
                 <% end %>
-              </div> -->
+              </li>
+            </ul>
+            <h2><%= @product.name %></h2>
+            <h3> <%= @product.prices.first.money.to_html  %> </h3>
+            <p>Mauris lobortis augue ex, ut faucibus nisi mollis ac. Sed volutpat scelerisque ex ut ullamcorper. Cras at velit quis sapien dapibus laoreet a id odio. Sed sit amet accumsan ante, eu congue metus. Aenean eros tortor, cursus quis feugiat sed, vestibulum vel purus. Etiam aliquam turpis quis blandit finibus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec porttitor placerat lectus, facilisis ornare leo tincidunt vel. Duis rutrum felis felis, eget malesuada massa tincidunt a.</p>
+            <span class="quick-drop">
+              <select name="guiest_id3" id="guiest_id3" class="select-drop">
+                <option value="0">S</option>
+                <option value="1">M</option>
+                <option value="2">L</option>
+                <option value="3">XL</option>
+              </select>
+            </span>
+            <span class="quick-drop resizeWidth">
+              <select name="guiest_id4" id="guiest_id4" class="select-drop">
+              <!--   <option value="0">Qty</option> -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </span>
+            <!-- <div class="add-to-cart"> 数量指定
+              <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
+              <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
+                <%= Spree.t(:add_to_cart) %>
+              <% end %>
+            </div> -->
 
-              <!-- <div class="btn-area">
-                <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-              </div> -->
+            <!-- <div class="btn-area">
+              <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            </div> -->
 
-              <!-- デフォルトのカートに飛ぶのでよろしくない
-              <div class="btn-area">
-                <%= link_to Spree::Core::Engine.routes.url_helpers.cart_path do %>
+            <!-- デフォルトのカートに飛ぶのでよろしくない
+            <div class="btn-area">
+              <%= link_to Spree::Core::Engine.routes.url_helpers.cart_path do %>
+                <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% end %>
+            </div> -->
+
+            <!-- Variant, 数量指定は後で考えるとする -->
+            <div class="btn-area">
+              <% if @variants.present? %>
+                <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: @variants.first), method: :post do %>
                   <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
                 <% end %>
-              </div> -->
-
-              <!-- Variant, 数量指定は後で考えるとする -->
-              <div class="btn-area">
-                <% if @variants.present? %>
-                  <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: @variants.first), method: :post do %>
-                    <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
-                  <% end %>
-                <% else %>
-                <!-- とりあえず形だけ作っておく -->
-                  <%= link_to '#' do %>
-                    <div class="btn btn-primary btn-block"> 現在､取り扱いがありません
-                  <% end %>
+              <% else %>
+              <!-- とりあえず形だけ作っておく -->
+                <%= link_to '#' do %>
+                  <div class="btn btn-primary btn-block"> 現在､取り扱いがありません
                 <% end %>
-              </div>
-
+              <% end %>
             </div>
+
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="row productsContent">
-        <div class="col-xs-12">
-          <div class="page-header">
-            <h4>関連商品</h4>
-          </div>
+    <div class="row productsContent">
+      <div class="col-xs-12">
+        <div class="page-header">
+          <h4>関連商品</h4>
         </div>
-        <% @related_products.each.with_index do |product, i| %>
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="productBox">
-              <div class="productImage clearfix">
-                <%= image_tag(@related_product_images[i], :alt => "products-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                    <li><a data-toggle="modal" data-target=<%= "#quick-view-#{i}" %> class="btn btn-default productView">VIEW</a></li>
-                    </ul>
-                </div>
-              </div>
-              <div class="productCaption clearfix">
-               <h5>product.name</h5>
-               <h3>product.prices.first.money.to_html</h3>
+      </div>
+      <% @recommended_products.each.with_index do |product, i| %>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="productBox">
+            <div class="productImage clearfix">
+              <%= image_tag(@recommended_product_images[i], :alt => "products-img") %>
+              <div class="productMasking">
+                <ul class="list-inline btn-group" role="group">
+                  <li><a data-toggle="modal" data-target=<%= "#quick-view-#{i}" %> class="btn btn-default productView">VIEW</a></li>
+                  </ul>
               </div>
             </div>
+            <div class="productCaption clearfix">
+             <h5><%= product.name %></h5>
+             <h3><%= product.prices.first.money.to_html %></h3>
+            </div>
           </div>
-        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
 
 <!-- PORDUCT QUICK VIEW MODAL -->
-<% @related_products.each.with_index do |product, i| %>
-  <%= render partial: 'potepan/partial/product_view_modal', locals: {product: product, product_image: @related_product_images[i], product_order: i} %>
+<% @recommended_products.each.with_index do |product, i| %>
+  <%= render partial: 'potepan/common/product_view_modal', locals: {product: product, product_image: @recommended_product_images[i], product_order: i} %>
 <% end %>

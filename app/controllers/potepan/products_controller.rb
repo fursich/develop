@@ -12,6 +12,7 @@ class Potepan::ProductsController < ApplicationController
   include Spree::Core::ControllerHelpers::Order
   # include Spree::BaseHelper
   # include Spree::Core::BaseController
+  include Spree::TaxonsHelper          # オススメ商品抽出用メソッドのため
 
   def index
     if params[:category]
@@ -25,10 +26,18 @@ class Potepan::ProductsController < ApplicationController
   end
 
   def show
-    @single_product = Spree::Product.find(params[:id])
-    @variants = @single_product.variants
-    @product_image = @single_product.display_image
-binding.pry
-    @related_products = Spree::Product.with_taxons_name( product.taxons ).includes(:prices)
+    @product = Spree::Product.find(params[:id])
+    @variants = @product.variants
+    @product_image = @product.display_image.attachment(:large)
+
+    # 以下はレコメンド表示用
+    related_group = @product.taxons.select{|t| t.leaf? }   # 商品特徴を抽出するため､taxonの末端を取ってくる
+
+    @recommended_products = if related_group.present?
+                              related_group.map{|t| taxon_preview(t,2).to_a }.flatten.uniq - [@product]   # taxonに関連したプロダクトを拾ってオススメとする(自分自身を除く)
+                            else
+                              nil
+                            end
+    @recommended_product_images = @recommended_products && @recommended_products.map{|prd| prd.display_image.attachment(:large)}
   end
 end
