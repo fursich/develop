@@ -4,22 +4,32 @@ class Potepan::OrdersController < ApplicationController
   include Spree::Core::ControllerHelpers::Auth
   include Spree::Core::ControllerHelpers::Store
 
-  def index
-  end
   def show
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
     items = @order.line_items
 
-    @item_count = items.size
-    @unit_prices, @quantities = items.pluck(:price, :quantity).transpose      # N+1を避けたいのでpluck頼み
-    @unit_prices.map!(&:to_i)                                                 # BigDecimal → integerにしておく 服なので､桁数は心配ないか
-    @total_prices = @unit_prices.zip(@quantities).map{|a,b| a.to_i * b.to_i } # nil.to_i = 0
-
-    @product_names, @product_images = items.map{|item| prd = item.product; [prd.name, prd.display_image.attachment(:small)] }.transpose   # N+1を避けたくて省エネ｡ちょっと可読性が悪いかも･･･
-    #  item.variant.option_values.presentation(商品バリアントの詳細)までは見せない､カートには商品名だけが出ることにする
+    @grand_total_price = items.pluck(:price, :quantity).map{|a,b| a.to_i * b.to_i }.inject(&:+)
+    # 税金などは後ほどやる
   end
 
   def update
+    binding.pry
+    @order = current_order(create_order_if_necessary: false)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
+
+    if @order.contents.update_cart(order_params)
+      respond_with(@order) do |format|
+        format.html do
+          if params.key?(:checkout)
+            @order.next if @order.cart?
+            redirect_to checkout_state_path(@order.checkout_steps.first)
+          else
+            redirect_to cart_path
+          end
+        end
+      end
+    else
+      respond_with(@order)
+    end
   end
 
   def edit

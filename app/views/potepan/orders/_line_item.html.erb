@@ -1,0 +1,11 @@
+
+<tr>
+  <td class="col-xs-2">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <span class="cartImage"><%= image_tag(line_item.product.display_image.attachment(:small), alt: "image", class: "image-responsive") %></span>
+  </td>
+  <td class="col-xs-4"><%= line_item.product.name %></td>
+  <td class="col-xs-2 text-right"><%= line_item.price.to_i %></td>
+  <td class="col-xs-2"><%= f.number_field :quantity %></td>
+  <td class="col-xs-2 text-right"><%= line_item.price.to_i * line_item.quantity %></td>
+</tr>
