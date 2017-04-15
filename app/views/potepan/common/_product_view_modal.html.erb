@@ -30,7 +30,9 @@
               </select>
             </span>
             <div class="btn-area">
-              <a href="#" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <%= link_to populate_potepan_orders_path, class: "btn btn-primary btn-block" do %>
+                Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% end %>
             </div>
           </div>
         </div>

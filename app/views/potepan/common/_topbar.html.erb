@@ -31,30 +31,29 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>ショッピングカート</li>
                       <li>
-                        <a href="single_product.html">
+                        <%= link_to potepan_product_path(1) do %>
                           <div class="media">
                             <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
                             <div class="media-body">
                               <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
                             </div>
                           </div>
-                        </a>
+                        <% end %>
                       </li>
-                       後ほど修正
                       <li>
-                        <a href="single_product.html">
+                        <%= link_to potepan_product_path(1) do %>
                           <div class="media">
                             <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
                             <div class="media-body">
                               <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
                             </div>
                           </div>
-                        </a>
+                        <% end %>
                       </li>
                       <li>
                         <div class="btn-group" role="group" aria-label="...">
                           <button type="button" class="btn btn-default" onclick="location.href='/potepan/orders/populate';">カートを見る</button> <!-- リンクはベタガキ中 -->
-                          <button type="button" class="btn btn-default" onclick="location.href='checkout_step_1.html';">購入する</button> <!-- 後ほどリンク修正 -->
+                          <button type="button" class="btn btn-default" onclick="location.href='#';">購入する</button> <!-- 後ほどリンク修正 -->
                         </div>
                       </li>
                     </ul>

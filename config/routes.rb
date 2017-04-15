@@ -9,20 +9,10 @@ Rails.application.routes.draw do
   mount Spree::Core::Engine, :at => '/'
           # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  get 'potepan/index'
+  resources :potepan, only: [:index]
   get 'potepan/about_us'
   get 'potepan/tokushoho'
   get 'potepan/privacy_policy'
-
-  # get 'potepan/product_list_left_sidebar'
-  # get 'potepan/cart_page'
-  # get 'potepan/blog_left_sidebar'
-  # get 'potepan/blog_right_sidebar'
-  # get 'potepan/blog_single_left_sidebar'
-  # get 'potepan/blog_single_right_sidebar'
-  #
-  # get 'potepan/product_grid_left_sidebar'
-  # get 'potepan/single_product'
 
   namespace :potepan do
     resources :blogs, only: [:index, :show]
@@ -33,6 +23,16 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  # get 'potepan/product_list_left_sidebar'
+  # get 'potepan/cart_page'
+  # get 'potepan/blog_left_sidebar'
+  # get 'potepan/blog_right_sidebar'
+  # get 'potepan/blog_single_left_sidebar'
+  # get 'potepan/blog_single_right_sidebar'
+  #
+  # get 'potepan/product_grid_left_sidebar'
+  # get 'potepan/single_product'
 
 end
 
