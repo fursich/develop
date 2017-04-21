@@ -1,9 +1,4 @@
 class Potepan::OrdersController < ApplicationController
-  include Spree::Core::ControllerHelpers::Pricing
-  include Spree::Core::ControllerHelpers::Order
-  include Spree::Core::ControllerHelpers::Auth
-  include Spree::Core::ControllerHelpers::Store
-  include Spree::Core::ControllerHelpers::StrongParameters
 
   def show
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
@@ -45,6 +40,25 @@ class Potepan::OrdersController < ApplicationController
       end
     else
       error = Spree.t(:please_enter_reasonable_quantity)
+    end
+
+    if error
+      flash[:error] = error
+      redirect_back_or_default(potepan_index_path)
+    else
+      redirect_to potepan_order_path(order.id)
+    end
+  end
+
+  def remove_item
+    order    = current_order(create_order_if_necessary: true)
+    variant  = Spree::Variant.find(params[:variant_id])
+    quantity = order.line_items.find_by(variant_id: variant).quantity
+
+    begin
+      order.contents.remove(variant, quantity)
+    rescue ActiveRecord::RecordInvalid => e
+      error = e.record.errors.full_messages.join(", ")
     end
 
     if error

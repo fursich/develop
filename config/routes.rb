@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update] do
       collection do
         post 'populate'
+        post 'remove_item'
       end
     end
   end

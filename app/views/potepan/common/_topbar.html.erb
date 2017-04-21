@@ -27,33 +27,29 @@
                     <%= link_to populate_potepan_orders_path, class: "dropdown-toggle", 'data-toggle' => "dropdown disabled" do %>
                       <i class="fa fa-shopping-cart"></i>¥0</a>
                     <% end %>
-                    <!-- <a href="cart_page.html" class="dropdown-toggle" data-toggle="dropdown disabled"><i class="fa fa-shopping-cart"></i>¥0</a> -->
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>ショッピングカート</li>
-                      <li>
-                        <%= link_to potepan_product_path(1) do %>
-                          <div class="media">
-                            <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
-                            <div class="media-body">
-                              <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
+                      <% @in_cart_items.each.with_index do |item, i| %>
+                        <li>
+                          <%= link_to potepan_product_path(item.product.id) do %>
+                            <div class="media">
+                              <div class="in-cart-image-box">
+                                <%= image_tag(@in_cart_item_images[i], :class => "media-left media-object in-cart-images", :alt => "cart-Image") %>
+                              </div>
+                              <div class="media-body">
+                                <h5 class="media-heading">
+                                  <%= item.product.name %><br>
+                                  <div class="in-cart-item-prices"><%= "#{item.quantity} X #{item.price.to_i}円" %></div>
+                                </h5>
+                              </div>
                             </div>
-                          </div>
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to potepan_product_path(1) do %>
-                          <div class="media">
-                            <%= image_tag("home/cart-items/cart-item-01.jpg", :class => "media-left media-object", :alt => "cart-Image") %>
-                            <div class="media-body">
-                              <h5 class="media-heading">商品名 <br><span>2 X 1990円</span></h5>
-                            </div>
-                          </div>
-                        <% end %>
-                      </li>
+                          <% end %>
+                        </li>
+                      <% end %>
                       <li>
                         <div class="btn-group" role="group" aria-label="...">
-                          <button type="button" class="btn btn-default" onclick="location.href='/potepan/orders/populate';">カートを見る</button> <!-- リンクはベタガキ中 -->
-                          <button type="button" class="btn btn-default" onclick="location.href='#';">購入する</button> <!-- 後ほどリンク修正 -->
+                          <button type="button" class="btn btn-default" onclick="location.href='/potepan/orders/populate';">カートを見る</button>
+                          <button type="button" class="btn btn-default" onclick="location.href='#';">購入する</button>
                         </div>
                       </li>
                     </ul>

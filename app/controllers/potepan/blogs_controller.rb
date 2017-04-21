@@ -1,4 +1,5 @@
 class Potepan::BlogsController < ApplicationController
+
   def index
   end
 

@@ -4,10 +4,10 @@
 <% provide(:group_path, potepan_products_path) %>
 <% provide(:partners, true) %>
 
-<!-- LIGHT SECTION -->
+<% # LIGHT SECTION %>
 <%= render partial: 'potepan/common/light_section' %>
 
-<!-- MAIN CONTENT SECTION -->
+<% # MAIN CONTENT SECTION %>
 <section class="mainContent clearfix">
   <div class="container">
     <div class="row singleProduct">
@@ -44,40 +44,20 @@
             </span>
             <span class="quick-drop resizeWidth">
               <select name="guiest_id4" id="guiest_id4" class="select-drop">
-              <!--   <option value="0">Qty</option> -->
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </span>
-            <!-- <div class="add-to-cart"> 数量指定
-              <%= number_field_tag :quantity, 1, :class => 'title', :min => 1 %>
-              <%= button_tag :class => 'large primary', :id => 'add-to-cart-button', :type => :submit do %>
-                <%= Spree.t(:add_to_cart) %>
-              <% end %>
-            </div> -->
-
-            <!-- <div class="btn-area">
-              <a href="cart_page.html" class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            </div> -->
-
-            <!-- デフォルトのカートに飛ぶのでよろしくない
+            <% # fix: Variant, 数量指定は後で考えるとする %>
             <div class="btn-area">
-              <%= link_to Spree::Core::Engine.routes.url_helpers.cart_path do %>
-                <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
-              <% end %>
-            </div> -->
-
-            <!-- Variant, 数量指定は後で考えるとする -->
-            <div class="btn-area">
-              <% if @variants.present? %>
-                <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: @variants.first), method: :post do %>
-                  <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% if @variant.present? %>
+                <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: @variant.id), method: :post do %>
+                  <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></div>
                 <% end %>
               <% else %>
-              <!-- とりあえず形だけ作っておく -->
                 <%= link_to '#' do %>
-                  <div class="btn btn-primary btn-block"> 現在､取り扱いがありません
+                  <div class="btn btn-primary btn-block variant-out-of-stock"> 現在､取り扱いがありません</div>
                 <% end %>
               <% end %>
             </div>
@@ -115,7 +95,11 @@
   </div>
 </section>
 
-<!-- PORDUCT QUICK VIEW MODAL -->
+<% # PORDUCT QUICK VIEW MODAL %>
 <% @recommended_products.each.with_index do |product, i| %>
-  <%= render partial: 'potepan/common/product_view_modal', locals: {product: product, product_image: @recommended_product_images[i], product_order: i} %>
+  <%= render partial: 'potepan/common/product_view_modal', locals: {
+        product: product,
+        product_image: @recommended_product_images[i],
+        product_order: i,
+        variant: @recommended_product_variants[i]} %>
 <% end %>

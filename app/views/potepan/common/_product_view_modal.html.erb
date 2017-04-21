@@ -29,11 +29,21 @@
                 <option value="3">Qty 3</option>
               </select>
             </span>
+
             <div class="btn-area">
-              <%= link_to populate_potepan_orders_path, class: "btn btn-primary btn-block" do %>
-                Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i>
+              <% if variant.present? %>
+                <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: variant.id), method: :post do %>
+                  <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                <% end %>
+              <% else %>
+                <%= link_to '#' do %>
+                  <div class="btn btn-primary btn-block variant-out-of-stock"> 現在､取り扱いがありません</div>
+                <% end %>
               <% end %>
             </div>
+
+
+
           </div>
         </div>
       </div>
