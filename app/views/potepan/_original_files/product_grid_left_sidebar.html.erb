@@ -2,10 +2,10 @@
 <% provide(:title, 'product grid left sidebar') %>
 <div class="main-wrapper">
 
-  <!-- HEADER -->
+  <% # HEADER %>
   <div class="header clearfix">
 
-    <!-- TOPBAR -->
+    <% # TOPBAR %>
     <div class="topBar">
               <div class="container">
                 <div class="row">
@@ -17,7 +17,7 @@
                   </div>
                   <div class="col-md-6 col-xs-12">
                     <ul class="list-inline pull-right">
-                      <li><!-- <span><a data-toggle="modal" href='.login-modal'>ログイン</a><small>or</small><a data-toggle="modal" href='#signup'>新規登録</a></span> --></li>
+                      <% # <li><span><a data-toggle="modal" href='.login-modal'>ログイン</a><small>or</small><a data-toggle="modal" href='#signup'>新規登録</a></span></li> %>
                       <li class="dropdown searchBox">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -69,10 +69,10 @@
               </div>
             </div>
 
-    <!-- NAVBAR -->
+    <% # NAVBAR %>
     <nav class="navbar navbar-main navbar-default" role="navigation">
       <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <% # Brand and toggle get grouped for better mobile display %>
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -83,7 +83,7 @@
           <a class="navbar-brand" href="index.html"><%= image_tag("img/logo.png", :alt => "") %></a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+    <% # Collect the nav links, forms, and other content for toggling %>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class=""><a href="index.html">Home</a></li>
@@ -97,13 +97,13 @@
                 <a href="blog_left_sidebar" class="dropdown-toggle">blog</a>
               </li>
             </ul>
-          </div><!-- /.navbar-collapse -->
+          </div>
       </div>
     </nav>
 
   </div>
 
-  <!-- LIGHT SECTION -->
+  <% # LIGHT SECTION %>
   <section class="lightSection clearfix pageHeader">
     <div class="container">
       <div class="row">
@@ -124,7 +124,7 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT SECTION -->
+  <% # MAIN CONTENT SECTION %>
   <section class="mainContent clearfix productsContent">
     <div class="container">
       <div class="row">
@@ -174,7 +174,7 @@
                 <div id="price-range"></div>
               </div>
               <input class="btn btn-default" type="submit" value="絞り込む">
-              <!-- <span class="priceLabel">Price: <strong>12 円- 30<円/strong></span> -->
+              <% # <span class="priceLabel">Price: <strong>12 円- 30<円/strong></span> %>
             </div>
           </div>
           <div class="panel panel-default filterNormal">
@@ -436,7 +436,7 @@
     </div>
   </section>
 
-  <!-- LIGHT SECTION -->
+  <% # LIGHT SECTION %>
   <section class="lightSection clearfix">
     <div class="container">
       <div class="row">
@@ -488,7 +488,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <% # FOOTER %>
   <div class="footer clearfix">
     <div class="container">
       <div class="row">
@@ -515,7 +515,7 @@
       </div>
     </div>
   </div>
-  <!-- COPY RIGHT -->
+  <% # COPY RIGHT %>
   <div class="copyRight clearfix">
     <div class="container">
       <div class="row">
@@ -533,7 +533,7 @@
   </div>
 </div>
 
-<!-- LOGIN MODAL -->
+<% # LOGIN MODAL %>
 <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -564,7 +564,7 @@
   </div>
 </div>
 
-<!-- SIGN UP MODAL -->
+<% # SIGN UP MODAL %>
 <div class="modal fade login-modal" id="signup" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -593,7 +593,7 @@
   </div>
 </div>
 
-<!-- PORDUCT QUICK VIEW MODAL -->
+<% # PORDUCT QUICK VIEW MODAL %>
 <div class="modal fade quick-view" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
