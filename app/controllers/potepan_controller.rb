@@ -14,5 +14,8 @@ class PotepanController < ApplicationController
     @single_product = Spree::Product.first
     @product_image = @single_product.display_image
   end
+  def cart_page
+    @added_product = Spree::Product.find(params[:id])
+  end
 
 end
