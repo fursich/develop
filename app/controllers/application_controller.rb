@@ -13,7 +13,9 @@ class ApplicationController < ActionController::Base
     def get_items_in_cart
       order = current_order(create_order_if_necessary: false)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
 
-      @in_cart_items = order.line_items
-      @in_cart_item_images = @in_cart_items.map{ |item| item.product.display_image.attachment(:small) }
+      if order.present?
+        @in_cart_items = order.line_items
+        @in_cart_item_images = @in_cart_items.map{ |item| item.product.display_image.attachment(:small) }
+      end
     end
 end
