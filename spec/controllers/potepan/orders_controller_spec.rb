@@ -1,33 +1,81 @@
 require 'rails_helper'
+require 'shared_contexts/custom_products'
 
 RSpec.describe Potepan::OrdersController, type: :controller do
 
   describe "GET #show" do
+    include_context 'custom products'
     it "returns http success" do
-      get :show
+      get :show, params: {id: 1}
       expect(response).to have_http_status(:success)
+    end
+    it "assigns @order" do
+      get :show, params: {id: 1}
+      expect(assigns(:order)).to be_present
     end
   end
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+  describe "POST #populate" do
+    include_context 'custom products'
+    it "returns http redirect" do
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      post :populate, params: {variant_id: variant.id, quantity: 1}
+      expect(response).to have_http_status(:redirect)
+    end
+    it "adds items onto cart" do
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      post :populate, params: {variant_id: variant.id, quantity: 5}
+      get :show, params: {id: 1}
+      order = assigns(:order)
+      expect(order.item_count).to eq(5)
     end
   end
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
+  describe "POST #remove_item" do
+    include_context 'custom products'
+    it "returns http redirect" do
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      post :populate, params: {variant_id: variant.id, quantity: 1}
+      post :remove_item, params: {variant_id: variant.id}
+      expect(response).to have_http_status(:redirect)
+    end
+    it "removes items from cart" do
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      variant2 = Spree::Variant.create(sku: 'test2', product_id: product.id, cost_price: 200.0)
+      post :populate, params: {variant_id: variant.id, quantity: 8}
+      post :populate, params: {variant_id: variant2.id, quantity: 5}
+      post :remove_item, params: {variant_id: variant.id}
+      get :show, params: {id: 1}
+      order = assigns(:order)
+      expect(order.item_count).to eq(5)
     end
   end
 
-  describe "GET #populate" do
+  describe "PATCH #update" do
+    include_context 'custom products'
     it "returns http success" do
-      get :populate
-      expect(response).to have_http_status(:success)
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      post :populate, params: {variant_id: variant.id, quantity: 1}
+      patch :update, params: {id: 1, order: {variant_id: variant.id, quantity: 1}}
+      expect(response).to have_http_status(:redirect)
+    end
+    it "updates items in cart" do
+      product = Spree::Product.first
+      variant = Spree::Variant.create(sku: 'test', product_id: product.id, cost_price: 100.0)
+      post :populate, params: {variant_id: variant.id, quantity: 1}
+      patch :update, params: {id: 1,
+        order: { line_items_attributes:
+           { 0 => { id: 1, quantity: 10 } }
+        }}
+      order = assigns(:order)
+      expect(order.item_count).to eq(10)
     end
   end
+
 
 end
