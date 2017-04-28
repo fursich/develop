@@ -3092,6 +3092,11 @@ body.bodyColor.container {
 .cartListInner .table-responsive .table tbody tr td .cartImage {
   display: inline-block;
   float: left;
+  img {
+    margin-top: 10px;
+    width: 64px;
+    height: auto;
+  }
 }
 .cartListInner .table-responsive .table tbody tr td:nth-child(3) {
   color: #888888;
