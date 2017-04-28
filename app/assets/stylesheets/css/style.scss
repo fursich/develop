@@ -354,6 +354,16 @@ a:hover, a:focus {
   margin: 0;
   box-shadow: none;
   border: none;
+  .in-cart-image-box {
+    .in-cart-images {
+      width: 50px;
+      height: auto;
+    }
+  }
+  .in-cart-item-prices {
+    font-size: 6px;
+    margin-left: 2px;
+  }
 }
 @media (max-width: 479px) {
   .topBar ul.pull-right li:last-child ul.dropdown-menu {
@@ -1592,6 +1602,9 @@ body.bodyColor.container {
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  a {
+    color: #252525;
+  }
 }
 .whiteSection .featuredCollection .thumbnail:hover .caption h4, .mainContent .featuredCollection .thumbnail:hover .caption h4 {
   color: #47bac1;
@@ -2596,14 +2609,18 @@ body.bodyColor.container {
 /*=== 7.1 PRODUCTS COMMON ===*/
 @media (min-width: 768px) {
   .productsContent .productBox .productImage {
-    width: 100%;
-    height: auto;
+    img {
+      width: auto;
+      height: 130px;
+    }
   }
 }
 @media (min-width: 992px) {
   .productsContent .productBox .productImage {
-    width: 100%;
-    height: auto;
+    img {
+      width: auto;
+      height: 150px;
+    }
   }
 }
 

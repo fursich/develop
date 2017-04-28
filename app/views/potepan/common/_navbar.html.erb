@@ -1,0 +1,30 @@
+<nav class="navbar navbar-main navbar-default" role="navigation">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/potepan/index.html"><%= image_tag("img/logo.png", :alt => "") %></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class=""><%= link_to 'Home', potepan_index_path %></li>
+          <li class="dropdown">
+            <%= link_to 'Shop', potepan_products_path, class: "dropdown-toggle" %>
+          </li>
+          <li class="dropdown">
+            <%= link_to 'About US', potepan_about_us_path, class: "dropdown-toggle" %>
+          </li>
+          <li class="dropdown">
+            <%= link_to 'blog', potepan_blogs_path, class: "dropdown-toggle" %>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+  </div>
+</nav>

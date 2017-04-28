@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -7,27 +8,32 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being the default of "spree"
   mount Spree::Core::Engine, :at => '/'
           # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'potepan/index'
-  get 'potepan/product_list_left_sidebar'
-  get 'potepan/cart_page'
-  get 'potepan/blog_left_sidebar'
-  get 'potepan/blog_right_sidebar'
-  get 'potepan/blog_single_left_sidebar'
-  get 'potepan/blog_single_right_sidebar'
+
+  resources :potepan, only: [:index]
   get 'potepan/about_us'
   get 'potepan/tokushoho'
   get 'potepan/privacy_policy'
 
-  get 'potepan/product_grid_left_sidebar'
-  get 'potepan/single_product'
   namespace :potepan do
+    resources :blogs, only: [:index, :show]
     resources :products, only: [:index, :show]
-    resources :orders, only: [:index, :show, :edit, :update] do
+    resources :orders, only: [:show, :update] do
       collection do
         post 'populate'
+        post 'remove_item'
       end
     end
   end
+
+  # get 'potepan/product_list_left_sidebar'
+  # get 'potepan/cart_page'
+  # get 'potepan/blog_left_sidebar'
+  # get 'potepan/blog_right_sidebar'
+  # get 'potepan/blog_single_left_sidebar'
+  # get 'potepan/blog_single_right_sidebar'
+  #
+  # get 'potepan/product_grid_left_sidebar'
+  # get 'potepan/single_product'
 
 end
 

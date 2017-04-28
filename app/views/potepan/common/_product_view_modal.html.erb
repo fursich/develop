@@ -1,16 +1,16 @@
 
 <!-- PORDUCT QUICK VIEW MODAL -->
-<div id = "quick-view-1", class="modal fade quick-view" tabindex="-1" role="dialog">
+<div id = "<%= "quick-view-#{product_order}" %>",  class="modal fade quick-view" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <div class="media">
           <div class="media-left">
-            <%= image_tag("img/products/quick-view/quick-view-01.jpg", :class => "media-object", :alt => "Image") %>
+            <%= image_tag(product_image, :class => "media-object", :alt => "Image") %>
           </div>
           <div class="media-body">
-            <h2>Old Skool Navy</h2>
+            <h2><%= product.name %></h2>
             <h3>149円</h3>
             <p>Classic sneaker from Vans. Cotton canvas and suede upper. Textile lining with heel stabilizer and ankle support. Contrasting laces. Sits on a classic waffle rubber sole.</p>
             <span class="quick-drop">
@@ -29,9 +29,21 @@
                 <option value="3">Qty 3</option>
               </select>
             </span>
+
             <div class="btn-area">
-              <a href="#" class="btn btn-primary btn-block">Add to cart <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+              <% if variant.present? %>
+                <%= link_to populate_potepan_orders_path(quantity: 1, variant_id: variant.id), method: :post do %>
+                  <div class="btn btn-primary btn-block">カートへ入れる<i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                <% end %>
+              <% else %>
+                <%= link_to '#' do %>
+                  <div class="btn btn-primary btn-block variant-out-of-stock"> 現在､取り扱いがありません</div>
+                <% end %>
+              <% end %>
             </div>
+
+
+
           </div>
         </div>
       </div>

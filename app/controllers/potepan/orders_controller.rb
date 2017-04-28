@@ -1,25 +1,26 @@
 class Potepan::OrdersController < ApplicationController
-  include Spree::Core::ControllerHelpers::Pricing
-  include Spree::Core::ControllerHelpers::Order
-  include Spree::Core::ControllerHelpers::Auth
-  include Spree::Core::ControllerHelpers::Store
 
-  def index
-  end
   def show
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
     items = @order.line_items
 
-    @item_count = items.size
-    @unit_prices, @quantities = items.pluck(:price, :quantity).transpose      # N+1を避けたいのでpluck頼み
-    @unit_prices.map!(&:to_i)                                                 # BigDecimal → integerにしておく 服なので､桁数は心配ないか
-    @total_prices = @unit_prices.zip(@quantities).map{|a,b| a.to_i * b.to_i } # nil.to_i = 0
-
-    @product_names, @product_images = items.map{|item| prd = item.product; [prd.name, prd.display_image.attachment(:small)] }.transpose   # N+1を避けたくて省エネ｡ちょっと可読性が悪いかも･･･
-    #  item.variant.option_values.presentation(商品バリアントの詳細)までは見せない､カートには商品名だけが出ることにする
+    @grand_total_price = items.pluck(:price, :quantity).map{|a,b| a.to_i * b.to_i }.inject(&:+)
+    # 税金などは後ほどやる
   end
 
   def update
+    @order = current_order(create_order_if_necessary: false)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
+
+    if @order.contents.update_cart(order_params)
+      if params.key?(:checkout)
+        @order.next if @order.cart?
+        redirect_to checkout_state_path(@order.checkout_steps.first)
+      else
+        redirect_to action: :show
+      end
+    else
+      redirect_to action: :show   # カートのupdateに失敗した場合はリロードとする
+    end
   end
 
   def edit
@@ -48,4 +49,34 @@ class Potepan::OrdersController < ApplicationController
       redirect_to potepan_order_path(order.id)
     end
   end
+
+  def remove_item
+    order    = current_order(create_order_if_necessary: true)
+    variant  = Spree::Variant.find(params[:variant_id])
+    quantity = order.line_items.find_by(variant_id: variant).quantity
+
+    begin
+      order.contents.remove(variant, quantity)
+    rescue ActiveRecord::RecordInvalid => e
+      error = e.record.errors.full_messages.join(", ")
+    end
+
+    if error
+      flash[:error] = error
+      redirect_back_or_default(potepan_index_path)
+    else
+      redirect_to potepan_order_path(order.id)
+    end
+  end
+
+  private
+
+  def order_params
+    if params[:order]
+      params[:order].permit(*permitted_order_attributes)
+    else
+      {}
+    end
+  end
+
 end
