@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -39,23 +38,27 @@ end
 
 # == Route Map
 #
-#                            Prefix Verb URI Pattern                                  Controller#Action
-#                             spree      /                                            Spree::Core::Engine
-#                     potepan_index GET  /potepan/index(.:format)                     potepan#index
-# potepan_product_grid_left_sidebar GET  /potepan/product_grid_left_sidebar(.:format) potepan#product_grid_left_sidebar
-# potepan_product_list_left_sidebar GET  /potepan/product_list_left_sidebar(.:format) potepan#product_list_left_sidebar
-#            potepan_single_product GET  /potepan/single_product(.:format)            potepan#single_product
-#                 potepan_cart_page GET  /potepan/cart_page(.:format)                 potepan#cart_page
-#         potepan_blog_left_sidebar GET  /potepan/blog_left_sidebar(.:format)         potepan#blog_left_sidebar
-#        potepan_blog_right_sidebar GET  /potepan/blog_right_sidebar(.:format)        potepan#blog_right_sidebar
-#  potepan_blog_single_left_sidebar GET  /potepan/blog_single_left_sidebar(.:format)  potepan#blog_single_left_sidebar
-# potepan_blog_single_right_sidebar GET  /potepan/blog_single_right_sidebar(.:format) potepan#blog_single_right_sidebar
-#                  potepan_about_us GET  /potepan/about_us(.:format)                  potepan#about_us
-#                 potepan_tokushoho GET  /potepan/tokushoho(.:format)                 potepan#tokushoho
-#            potepan_privacy_policy GET  /potepan/privacy_policy(.:format)            potepan#privacy_policy
+#                     Prefix Verb  URI Pattern                           Controller#Action
+#                      spree       /                                     Spree::Core::Engine
+#              potepan_index GET   /potepan(.:format)                    potepan#index
+#           potepan_about_us GET   /potepan/about_us(.:format)           potepan#about_us
+#          potepan_tokushoho GET   /potepan/tokushoho(.:format)          potepan#tokushoho
+#     potepan_privacy_policy GET   /potepan/privacy_policy(.:format)     potepan#privacy_policy
+#              potepan_blogs GET   /potepan/blogs(.:format)              potepan/blogs#index
+#               potepan_blog GET   /potepan/blogs/:id(.:format)          potepan/blogs#show
+#           potepan_products GET   /potepan/products(.:format)           potepan/products#index
+#            potepan_product GET   /potepan/products/:id(.:format)       potepan/products#show
+#    populate_potepan_orders POST  /potepan/orders/populate(.:format)    potepan/orders#populate
+# remove_item_potepan_orders POST  /potepan/orders/remove_item(.:format) potepan/orders#remove_item
+#              potepan_order GET   /potepan/orders/:id(.:format)         potepan/orders#show
+#                            PATCH /potepan/orders/:id(.:format)         potepan/orders#update
+#                            PUT   /potepan/orders/:id(.:format)         potepan/orders#update
 #
 # Routes for Spree::Core::Engine:
 #                                                  set_locale POST   /locale/set(.:format)                                                               spree/locale#set {:format=>:json}
+#                                                admin_locale GET    /admin/locale(.:format)                                                             spree/admin/locales#show
+#                                                             PATCH  /admin/locale(.:format)                                                             spree/admin/locales#update
+#                                                             PUT    /admin/locale(.:format)                                                             spree/admin/locales#update
 #                                      new_spree_user_session GET    /user/spree_user/sign_in(.:format)                                                  spree/user_sessions#new
 #                                          spree_user_session POST   /user/spree_user/sign_in(.:format)                                                  spree/user_sessions#create
 #                                  destroy_spree_user_session GET    /user/spree_user/logout(.:format)                                                   spree/user_sessions#destroy
@@ -269,16 +272,6 @@ end
 #                                                             PUT    /admin/properties/:id(.:format)                                                     spree/admin/properties#update
 #                                                             DELETE /admin/properties/:id(.:format)                                                     spree/admin/properties#destroy
 #                                      admin_product_property DELETE /admin/product_properties/:id(.:format)                                             spree/admin/product_properties#destroy
-#                                      select_admin_prototype GET    /admin/prototypes/:id/select(.:format)                                              spree/admin/prototypes#select
-#                                  available_admin_prototypes GET    /admin/prototypes/available(.:format)                                               spree/admin/prototypes#available
-#                                            admin_prototypes GET    /admin/prototypes(.:format)                                                         spree/admin/prototypes#index
-#                                                             POST   /admin/prototypes(.:format)                                                         spree/admin/prototypes#create
-#                                         new_admin_prototype GET    /admin/prototypes/new(.:format)                                                     spree/admin/prototypes#new
-#                                        edit_admin_prototype GET    /admin/prototypes/:id/edit(.:format)                                                spree/admin/prototypes#edit
-#                                             admin_prototype GET    /admin/prototypes/:id(.:format)                                                     spree/admin/prototypes#show
-#                                                             PATCH  /admin/prototypes/:id(.:format)                                                     spree/admin/prototypes#update
-#                                                             PUT    /admin/prototypes/:id(.:format)                                                     spree/admin/prototypes#update
-#                                                             DELETE /admin/prototypes/:id(.:format)                                                     spree/admin/prototypes#destroy
 #                                            cart_admin_order GET    /admin/orders/:id/cart(.:format)                                                    spree/admin/orders#cart
 #                                         advance_admin_order PUT    /admin/orders/:id/advance(.:format)                                                 spree/admin/orders#advance
 #                                         confirm_admin_order GET    /admin/orders/:id/confirm(.:format)                                                 spree/admin/orders#confirm
@@ -456,14 +449,6 @@ end
 #                                                             PATCH  /admin/tax_rates/:id(.:format)                                                      spree/admin/tax_rates#update
 #                                                             PUT    /admin/tax_rates/:id(.:format)                                                      spree/admin/tax_rates#update
 #                                                             DELETE /admin/tax_rates/:id(.:format)                                                      spree/admin/tax_rates#destroy
-#                                              admin_trackers GET    /admin/trackers(.:format)                                                           spree/admin/trackers#index
-#                                                             POST   /admin/trackers(.:format)                                                           spree/admin/trackers#create
-#                                           new_admin_tracker GET    /admin/trackers/new(.:format)                                                       spree/admin/trackers#new
-#                                          edit_admin_tracker GET    /admin/trackers/:id/edit(.:format)                                                  spree/admin/trackers#edit
-#                                               admin_tracker GET    /admin/trackers/:id(.:format)                                                       spree/admin/trackers#show
-#                                                             PATCH  /admin/trackers/:id(.:format)                                                       spree/admin/trackers#update
-#                                                             PUT    /admin/trackers/:id(.:format)                                                       spree/admin/trackers#update
-#                                                             DELETE /admin/trackers/:id(.:format)                                                       spree/admin/trackers#destroy
 #                      update_positions_admin_payment_methods POST   /admin/payment_methods/update_positions(.:format)                                   spree/admin/payment_methods#update_positions
 #                                       admin_payment_methods GET    /admin/payment_methods(.:format)                                                    spree/admin/payment_methods#index
 #                                                             POST   /admin/payment_methods(.:format)                                                    spree/admin/payment_methods#create

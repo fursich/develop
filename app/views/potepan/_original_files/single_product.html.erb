@@ -2,10 +2,10 @@
 
 <div class="main-wrapper">
 
-  <!-- HEADER -->
+  <% # HEADER %>
   <div class="header clearfix">
 
-    <!-- TOPBAR -->
+    <% # TOPBAR %>
     <div class="topBar">
               <div class="container">
                 <div class="row">
@@ -17,7 +17,7 @@
                   </div>
                   <div class="col-md-6 col-xs-12">
                     <ul class="list-inline pull-right">
-                      <li><!-- <span><a data-toggle="modal" href='.login-modal'>ログイン</a><small>or</small><a data-toggle="modal" href='#signup'>新規登録</a></span> --></li>
+                      <% # <li><span><a data-toggle="modal" href='.login-modal'>ログイン</a><small>or</small><a data-toggle="modal" href='#signup'>新規登録</a></span></li> %>
                       <li class="dropdown searchBox">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
@@ -69,10 +69,10 @@
               </div>
             </div>
 
-    <!-- NAVBAR -->
+    <% # NAVBAR %>
     <nav class="navbar navbar-main navbar-default" role="navigation">
       <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
+    <% # Brand and toggle get grouped for better mobile display %>
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -83,7 +83,7 @@
           <a class="navbar-brand" href="index.html"><%= image_tag("img/logo.png", :alt => "") %></a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
+    <% # Collect the nav links, forms, and other content for toggling %>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
               <li class=""><a href="index.html">Home</a></li>
@@ -97,13 +97,13 @@
                 <a href="blog_left_sidebar" class="dropdown-toggle">blog</a>
               </li>
             </ul>
-          </div><!-- /.navbar-collapse -->
+          </div>
       </div>
     </nav>
 
   </div>
 
-  <!-- LIGHT SECTION -->
+  <% # LIGHT SECTION %>
   <section class="lightSection clearfix pageHeader">
     <div class="container">
       <div class="row">
@@ -130,7 +130,7 @@
     </div>
   </section>
 
-  <!-- MAIN CONTENT SECTION -->
+  <% # MAIN CONTENT SECTION %>
   <section class="mainContent clearfix">
     <div class="container">
       <div class="row singleProduct">
@@ -142,7 +142,7 @@
                   <div class="item active" data-thumb="0">
                     <%= image_tag(@product_image.attachment.url(:large)) %>
                   </div>
-                <!--   <div class="item" data-thumb="1">
+                <% #   <div class="item" data-thumb="1">
                   <%= image_tag("img/products/signle-product/product-slide-big-02.jpg") %>
                 </div>
                 <div class="item" data-thumb="2">
@@ -150,7 +150,7 @@
                 </div>
                 <div class="item" data-thumb="3">
                   <%= image_tag("img/products/signle-product/product-slide-big-04.jpg") %>
-                </div> -->
+                </div> %>
                 </div>
               </div>
 
@@ -158,7 +158,7 @@
             <div class="media-body">
               <ul class="list-inline">
                 <li><a href="product_grid_left_sidebar.html"><i class="fa fa-reply" aria-hidden="true"></i>一覧ページへ戻る</a></li>
-                <!-- <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> -->
+                <% # <li><a href="#"><i class="fa fa-plus" aria-hidden="true"></i>Share This</a></li> %>
               </ul>
               <h2><%= @single_product.name %></h2>
               <h3> <%= @single_product.price %> </h3>
@@ -173,7 +173,7 @@
               </span>
               <span class="quick-drop resizeWidth">
                 <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <!--   <option value="0">Qty</option> -->
+                <% #   <option value="0">Qty</option> %>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -260,7 +260,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <% # FOOTER %>
   <div class="footer clearfix">
     <div class="container">
       <div class="row">
@@ -287,7 +287,7 @@
       </div>
     </div>
   </div>
-  <!-- COPY RIGHT -->
+  <% # COPY RIGHT %>
   <div class="copyRight clearfix">
     <div class="container">
       <div class="row">
@@ -305,7 +305,7 @@
   </div>
 </div>
 
-<!-- LOGIN MODAL -->
+<% # LOGIN MODAL %>
 <div class="modal fade login-modal" id="login" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -336,7 +336,7 @@
   </div>
 </div>
 
-<!-- SIGN UP MODAL -->
+<% # SIGN UP MODAL %>
 <div class="modal fade" id="signup" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -365,7 +365,7 @@
   </div>
 </div>
 
-<!-- PORDUCT QUICK VIEW MODAL -->
+<% # PORDUCT QUICK VIEW MODAL %>
 <div class="modal fade quick-view" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">

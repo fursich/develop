@@ -1,7 +1,7 @@
 <% provide(:title, 'TOP') %>
 <% provide(:partners, true) %>
 
-  <!-- BANNER -->
+  <% # BANNER %>
   <div class="bannercontainer">
     <div class="fullscreenbanner-container">
       <div class="fullscreenbanner">
@@ -175,7 +175,7 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT SECTION -->
+  <% # MAIN CONTENT SECTION %>
   <section class="mainContent clearfix">
     <div class="container">
       <div class="row featuredCollection">
@@ -232,118 +232,22 @@
         </div>
         <div class="col-xs-12">
           <div class="owl-carousel featuredProductsSlider">
-            <div class="slide">
-              <div class="productImage clearfix">
-                <%= image_tag("home/featured-product/product-01.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
+            <% @new_arrivals.each.with_index do |product, i| %>
+              <div class="slide">
+                <div class="productImage clearfix">
+                  <%= image_tag(@new_arrival_images[i], :alt => "featured-product-img") %>
+                  <div class="productMasking">
+                    <ul class="list-inline btn-group" role="group">
+                                      <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
+                                      </ul>
+                  </div>
+                </div>
+                <div class="productCaption">
+                  <h5><%= link_to product.name, potepan_product_path(product.id) %></h5>
+                  <h3><%= product.price %>円</h3>
                 </div>
               </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>1990円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-02.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>1490円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-03.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>790円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-04.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>1090円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-05.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>1990円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-06.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-               <h3>1490円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-07.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                                    <li><a data-toggle="modal" href=".quick-view" class="btn btn-default productView">VIEW</a></li>
-                                    </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>790円</h3>
-              </div>
-            </div>
-            <div class="slide">
-              <div class="productImage">
-                <%= image_tag("home/featured-product/product-09.jpg", :alt => "featured-product-img") %>
-                <div class="productMasking">
-                  <ul class="list-inline btn-group" role="group">
-                  <li><a data-toggle ="modal" href =".quick-view" class ="btn btn-default productView">VIEW</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="productCaption">
-                <h5><%= link_to '商品タイトル', potepan_product_path(1) %></h5>
-                <h3>1090円</h3>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -405,7 +309,7 @@
     </div>
   </section>
 
-<!-- PORDUCT QUICK VIEW MODAL -->
+<% # PORDUCT QUICK VIEW MODAL %>
 <div class="modal fade quick-view" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -429,7 +333,7 @@
             </span>
             <span class="quick-drop resizeWidth">
               <select name="guiest_id4" id="guiest_id4" class="select-drop">
-                <!-- <option value="0">数</option> -->
+                <% # <option value="0">数</option> %>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
