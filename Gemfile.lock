@@ -410,7 +410,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  pg (= 0.15.1)
+  pg
   pry
   pry-byebug
   puma (~> 3.0)
