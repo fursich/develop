@@ -29,22 +29,24 @@
                     <% end %>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>ショッピングカート</li>
-                      <% @in_cart_items.each.with_index do |item, i| %>
-                        <li>
-                          <%= link_to potepan_product_path(item.product.id) do %>
-                            <div class="media">
-                              <div class="in-cart-image-box">
-                                <%= image_tag(@in_cart_item_images[i], :class => "media-left media-object in-cart-images", :alt => "cart-Image") %>
+                      <% if @in_cart_items %>
+                        <% @in_cart_items.each.with_index do |item, i| %>
+                          <li>
+                            <%= link_to potepan_product_path(item.product.id) do %>
+                              <div class="media">
+                                <div class="in-cart-image-box">
+                                    <%= image_tag(@in_cart_item_images[i], :class => "media-left media-object in-cart-images", :alt => "cart-Image") %>
+                                </div>
+                                <div class="media-body">
+                                  <h5 class="media-heading">
+                                    <%= item.product.name %><br>
+                                    <div class="in-cart-item-prices"><%= "#{item.quantity} X #{item.price.to_i}円" %></div>
+                                  </h5>
+                                </div>
                               </div>
-                              <div class="media-body">
-                                <h5 class="media-heading">
-                                  <%= item.product.name %><br>
-                                  <div class="in-cart-item-prices"><%= "#{item.quantity} X #{item.price.to_i}円" %></div>
-                                </h5>
-                              </div>
-                            </div>
-                          <% end %>
-                        </li>
+                            <% end %>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <div class="btn-group" role="group" aria-label="...">

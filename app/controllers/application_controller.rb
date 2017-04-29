@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Spree::Core::ControllerHelpers::Store
   include Spree::Core::ControllerHelpers::StrongParameters
 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
   before_action :get_items_in_cart
 
   private

@@ -10,9 +10,9 @@ RSpec.describe PotepanController, type: :controller do
       expect(response).to have_http_status(:success)
     end
     it "assigns five new arrivals" do
+      new_arrivals = Spree::Product.order('id DESC').limit(5)
       get :index
-      new_arrivals = assigns(:new_arrivals)
-      expect(new_arrivals.count).to eq(5)
+      expect(assigns(:new_arrivals)).to eq(new_arrivals.to_a)
     end
   end
 
