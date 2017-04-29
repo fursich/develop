@@ -17,9 +17,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  adapter: postgresql
+  database: db/potepan.db
 
 production:
   <<: *default
   adapter: postgresql
-  database: potepan_database
+  database: db/potepan.db
