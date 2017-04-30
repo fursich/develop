@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
       if order.present?
         @in_cart_items = order.line_items
-        @in_cart_total_price = @in_cart_items.pluck(:price, :quantity).map{|a,b| a.to_i * b.to_i }.inject(&:+)
+        @in_cart_total_price = @in_cart_items.pluck(:price, :quantity).map{|a,b| (a || 0).to_i * (b || 0).to_i }.inject(&:+)
         @in_cart_item_images = @in_cart_items.map{ |item| item.product.display_image.attachment(:small) }
       end
     end
