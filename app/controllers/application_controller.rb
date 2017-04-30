@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :null_session
-  before_action :get_items_in_cart, if: :match_potepan_path?
+  before_action :get_items_in_cart, if: :request_cart_info?
 
   private
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def match_potepan_path?
-      /^\/potepan\// =~ request.path_info
+    def request_cart_info?
+      /^\/potepan/ =~ request.path_info
     end
 end
