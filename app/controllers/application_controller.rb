@@ -1,12 +1,7 @@
 class ApplicationController < ActionController::Base
-  include Spree::Core::ControllerHelpers::Pricing
-  include Spree::Core::ControllerHelpers::Order
-  include Spree::Core::ControllerHelpers::Auth
-  include Spree::Core::ControllerHelpers::Store
-  include Spree::Core::ControllerHelpers::StrongParameters
 
   protect_from_forgery with: :null_session
-  before_action :get_items_in_cart
+  before_action :get_items_in_cart, if: :match_potepan_path?
 
   private
 
@@ -17,5 +12,9 @@ class ApplicationController < ActionController::Base
         @in_cart_items = order.line_items
         @in_cart_item_images = @in_cart_items.map{ |item| item.product.display_image.attachment(:small) }
       end
+    end
+
+    def match_potepan_path?
+      /^\/potepan\// =~ request.path_info
     end
 end

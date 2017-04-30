@@ -1,5 +1,10 @@
 # require_dependency 'spree/core/controller_helpers/strong_parameters'
 class Potepan::ProductsController < ApplicationController
+  include Spree::Core::ControllerHelpers::Pricing
+  include Spree::Core::ControllerHelpers::Order
+  include Spree::Core::ControllerHelpers::Auth
+  include Spree::Core::ControllerHelpers::Store
+  include Spree::Core::ControllerHelpers::StrongParameters
   include Spree::TaxonsHelper          # オススメ商品抽出用メソッドのため
 
   def index

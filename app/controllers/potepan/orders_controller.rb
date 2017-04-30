@@ -1,4 +1,9 @@
 class Potepan::OrdersController < ApplicationController
+  include Spree::Core::ControllerHelpers::Pricing
+  include Spree::Core::ControllerHelpers::Order
+  include Spree::Core::ControllerHelpers::Auth
+  include Spree::Core::ControllerHelpers::Store
+  include Spree::Core::ControllerHelpers::StrongParameters
 
   def show
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
