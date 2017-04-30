@@ -1,80 +1,30 @@
-# 開発環境準備
 
-* **【ImageMagickのインストール】**   
+## Solidusを利用したECサイト
 
-`# yum install ImageMagick ImageMagick-devel`
+http://13.113.151.69/potepan
 
-* **【rbenvの設定】**  
+本番環境･･･AWS EC2上にデプロイ
+･ unicorn + nginx
+･ capistorano等は使用せず､今回は手動によるデプロイ
+･ dbはpostgresを使用 (同一インスタンスを共用した)
 
-`$ echo "gem: --no-ri --no-rdoc" > ~/.gemrc`  
-`$ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv`  
-`$ echo 'export PATH="$PATH:$HOME/.rbenv/bin:$HOME/.rbenv/plugins/ruby-build/bin"' >> ~/.bashrc`  
-`$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc`
+#### 背景
 
+ポテパンキャンプにて提供されたモックアップをベースにコーディングを重ね､バグフィックスや改変などを加えていったもの｡
+カート機能､商品レビュー機能などを実装｡
 
- **ruby-buildのセットアップ**  
-`$ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build`  
-`$ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc`  
-`$ exec $SHELL`
+#### 苦労した点
 
- **rubyのインストール**  
-`$ rbenv install -l`  
-`$ CONFIGURE_OPTS="--with-readline-dir=/usr/include/readline" rbenv install 2.4.0`  
-`$ rbenv global 2.4.0`
+* Solidusの仕様解読
 
+READMEにはあまりつっこんだ仕様がなく､英文の記事や断片的な紹介など以外は､直接コードリーディングするしかなく動作を確認するのに手間取った｡
 
-* **【Git用プロファイル設定（名前、メールアドレス）】**  
+* アセット
 
-`$ git config --global user.name "John Doe"`  
-`$ git config --global user.email johndoe@example.com`  
+画像の絶対パス指定や､font-awesome･slider revolutionなどの要素が思ったように表示されず苦労した｡
+slider revolutionについては､unicodeでは文字化けするコードが直書きされていたことと､railsでの実装例があまり紹介されていないこともあり､原因特定までに時間がかかってしまいました｡試行錯誤を通じて､アセットプリコンパイルの仕組みやアセット周りの注意点などを身につけられました｡
 
-* **【開発アプリケーションの準備】**  
-
-`$ git clone git@github.com:potepancamp/develop.git`  
-`$ cd develop`  
-`$ bundle install --path vendor/bundle`  
-`$ bundle exec rails g spree:install`
-
-【エラーが出た時】  
-~~~
-        rake  db:create  
-Database 'db/development.sqlite3' already exists  
-Created database 'db/test.sqlite3'  
-     running  migrations  
-        rake  db:migrate VERBOSE=false  
-FATAL: Listen error: unable to monitor directories for changes.  
-Visit https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers for info on how to fix this.  
-     loading  seed data  
-        rake  db:seed  
-FATAL: Listen error: unable to monitor directories for changes.  
-Visit https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers for info on how to fix this.  
-     loading  sample data  
-        rake  spree_sample:load  
-FATAL: Listen error: unable to monitor directories for changes.  
-Visit https://github.com/guard/listen/wiki/Increasing-the-amount-of-inotify-watchers for info on how to fix this.  
-      insert  config/routes.rb  
-~~~
-
-【以下を実行】  
-`$ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p`
-
-`$ bundle exec rails g solidus:auth:install`  
-`$ bundle exec rails railties:install:migrations`  
-`$ bundle exec rails g solidus_i18n:install`  
-`$ bundle exec rails db:migrate`  
-
-* Server 起動  
-
-`$ bundle exec rails server -b 0.0.0.0`  
-
-* Potepan TOP ページ  
-
-http://localhost:3000/potepan/index.html  
-
-* Solidus TOP ページ  
-
-http://localhost:3000  
-
-* **【Solidus テンプレートダウンロード】**  
-
-`$ git clone git://github.com/solidusio/solidus.git`
+* エンジンとの分離
+SolidusをベースにしてECサイトを作る場合は､おそらくSolidusエンジンの提供するフレームに乗っかる形で､ビューやコントローラーのカスタマイズをするのが一般的かと思います｡
+今回はゼロから独立したアプリケーションを作る方針があったため､ところどころSolidasのモジュールを部分的にインクルードするなど､かなり複雑でわかりにくい使い方をすることになってしまいました｡
+完全に乗っかるのか､はっきり別アプリとして､SolidusのAPIだけを利用させてもらうのか(データ管理などはこちらでやる前提)､中途半端になってしまった結果､Solidusとこのアプリとの結合度が高くなってしまったのが反省点｡

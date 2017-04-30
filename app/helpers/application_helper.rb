@@ -2,7 +2,7 @@ module ApplicationHelper
   include Spree::BaseHelper
 
   def show_variant_price(variant)
-    format_with_comma(variant&.prices&.first&.amount&.to_i)
+    format_with_comma(variant&.prices&.last&.amount&.to_i)
   end
 
   def format_with_comma(num) # 3桁ごとにカンマを入れて文字列を返す
