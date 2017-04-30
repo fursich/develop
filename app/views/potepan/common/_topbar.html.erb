@@ -25,7 +25,7 @@
                   </li>
                   <li class="dropdown">
                     <%= link_to populate_potepan_orders_path, class: "dropdown-toggle", 'data-toggle' => "dropdown disabled" do %>
-                      <i class="fa fa-shopping-cart"></i>¥0</a>
+                      <i class="fa fa-shopping-cart"></i><%= "¥#{format_with_comma(@in_cart_total_price)}" %></a>
                     <% end %>
                     <ul class="dropdown-menu dropdown-menu-right">
                       <li>ショッピングカート</li>

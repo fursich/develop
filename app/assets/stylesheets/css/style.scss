@@ -2299,7 +2299,7 @@ body.bodyColor.container {
   background-position: center center;
   height: auto;
   height: 200px;
-  background-image: url(../img/products/page-header-image.jpg);
+  background-image: image-url('page-header-image.jpg');
 }
 .pageHeaderImage .tableBlock {
   display: table;
@@ -3834,7 +3834,7 @@ body.bodyColor.container {
 }
 
 .darkSection {
-  background-image: url("../img/about-us/store-bg.jpg");
+  background-image: image-url("store-bg.jpg");
   background-attachment: fixed;
   width: 100%;
   -webkit-background-size: cover;

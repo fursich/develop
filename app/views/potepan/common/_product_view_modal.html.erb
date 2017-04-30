@@ -11,7 +11,6 @@
           </div>
           <div class="media-body">
             <h2><%= product.name %></h2>
-            <h3>149円</h3>
             <p>Classic sneaker from Vans. Cotton canvas and suede upper. Textile lining with heel stabilizer and ankle support. Contrasting laces. Sits on a classic waffle rubber sole.</p>
             <span class="quick-drop">
               <select name="guiest_id3" id="guiest_id3" class="select-drop">
@@ -29,6 +28,7 @@
                 <option value="3">Qty 3</option>
               </select>
             </span>
+            <h3><%= show_variant_price(variant) %> 円</h3>
 
             <div class="btn-area">
               <% if variant.present? %>
@@ -37,7 +37,7 @@
                 <% end %>
               <% else %>
                 <%= link_to '#' do %>
-                  <div class="btn btn-primary btn-block variant-out-of-stock"> 現在､取り扱いがありません</div>
+                  <div class="btn btn-primary btn-block variant-out-of-stock"> 品切れです｡</div>
                 <% end %>
               <% end %>
             </div>

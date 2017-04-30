@@ -9,8 +9,9 @@ class Potepan::OrdersController < ApplicationController
     @order = current_order(create_order_if_necessary: true)  # 未オーダー時に呼ばれた場合の挙動を検討: オプションtrueでよいか?
     items = @order.line_items
 
-    @grand_total_price = items.pluck(:price, :quantity).map{|a,b| a.to_i * b.to_i }.inject(&:+)
-    # 税金などは後ほどやる
+    @total_price = items.pluck(:price, :quantity).map{|a,b| a.to_i * b.to_i }.inject(&:+)
+    @total_tax = (@total_price * 1.08).to_i   # [todo] 税金はSolidusの機能を使って汎用化･国際化する
+    @grand_total_price = @total_price + @total_tax
   end
 
   def update
