@@ -34,9 +34,9 @@
             <div class="totalAmountArea">
               <div class="col-sm-4 col-sm-offset-8 col-xs-12">
                 <ul class="list-unstyled">
-                  <li>小計 <span><%= @total_price %></span></li>
-                  <li>消費税 <span><%= @total_tax %></span></li>
-                  <li>総計 <span class="grandTotal"><%= @grand_total_price %></span></li>
+                  <li>小計 <span><%= format_with_comma(@total_price) %></span></li>
+                  <li>消費税 <span><%= format_with_comma(@total_tax) %></span></li>
+                  <li>総計 <span class="grandTotal"><%= format_with_comma(@grand_total_price) %></span></li>
                 </ul>
               </div>
             </div>
