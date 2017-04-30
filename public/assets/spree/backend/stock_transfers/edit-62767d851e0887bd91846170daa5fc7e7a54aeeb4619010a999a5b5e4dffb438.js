@@ -1,0 +1,1 @@
+(function(){$(document).ready(function(){if($("#stock-transfer-transfer-items").length>0)return Spree.StockTransfers.VariantForm.initializeForm(!0),Spree.StockTransfers.VariantForm.beginListeningForAdd(),Spree.StockTransfers.CountUpdateForms.beginListening(!1),Spree.StockTransfers.TransferItemDeleting.beginListening()})}).call(this);

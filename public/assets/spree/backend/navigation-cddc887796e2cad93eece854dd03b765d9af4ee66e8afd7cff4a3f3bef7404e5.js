@@ -1,0 +1,1 @@
+(function(){var n,i;i=function(){return $(".admin-nav-header").outerHeight()+$(".admin-nav-menu").outerHeight()+$(".admin-nav-footer").outerHeight()},n=function(){return $(".admin-nav").toggleClass("fits",i()<$(window).height())},$(function(){return $(".admin-nav-sticky, .admin-nav").stick_in_parent(),n(),$(window).on("resize",n)})}).call(this);

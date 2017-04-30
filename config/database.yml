@@ -23,4 +23,6 @@ test:
 production:
   <<: *default
   adapter: postgresql
-  database: db/potepan.db
+  database: potepan_aws
+  username: koji
+  password: 'potepan'

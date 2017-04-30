@@ -1,0 +1,1 @@
+(function(){$(function(){var e,n,t;if($(".new_payment").is("*"))return e=$('input[name="payment[payment_method_id]"]'),n=$(".payment-method-settings .payment-methods"),t=function(){var t;return t=e.filter(":checked").val(),n.addClass("hidden"),n.filter("#payment_method_"+t).removeClass("hidden")},e.on("click",t),t()})}).call(this);
