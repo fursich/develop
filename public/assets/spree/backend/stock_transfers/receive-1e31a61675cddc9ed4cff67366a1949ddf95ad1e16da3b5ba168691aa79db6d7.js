@@ -1,0 +1,1 @@
+(function(){$(document).ready(function(){if($("#received-transfer-items").length>0)return Spree.StockTransfers.VariantForm.initializeForm(!1),Spree.StockTransfers.VariantForm.beginListeningForReceive(),Spree.StockTransfers.CountUpdateForms.beginListening(!0)})}).call(this);

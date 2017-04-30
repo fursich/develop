@@ -1,0 +1,1 @@
+(function(){var e;e=function(){function e(){}return e.updateTotal=function(){var e;return e=_.reduce($(".js-number-update-text"),function(e,t){return e+parseInt($(t).text().trim(),10)},0),$("#total-received-quantity").text(e)},e}(),null==Spree.StockTransfers&&(Spree.StockTransfers={}),Spree.StockTransfers.ReceivedCounter=e}).call(this);

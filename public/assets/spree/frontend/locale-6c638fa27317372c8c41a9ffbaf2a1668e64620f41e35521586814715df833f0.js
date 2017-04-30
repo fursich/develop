@@ -1,0 +1,1 @@
+(function(){$(function(){return $("#locale-select select").change(function(){return this.form.submit()})})}).call(this);
