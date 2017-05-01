@@ -10,7 +10,7 @@ class Potepan::OrdersController < ApplicationController
     items = @order.line_items
 
     @total_price = items.pluck(:price, :quantity).map{|a,b| (a || 0).to_i * (b || 0).to_i }.inject(&:+)
-    @total_tax = @total_price && (@total_price * 1.08).to_i   # [todo] 税金はSolidusの機能を使って汎用化･国際化する
+    @total_tax = @total_price && (@total_price * 0.08).to_i   # [todo] 税金はSolidusの機能を使って汎用化･国際化する
     @grand_total_price = @total_price && (@total_price + @total_tax)
   end
 
